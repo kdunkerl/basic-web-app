@@ -16,12 +16,26 @@ export default function QueryProcessor(query: string): string {
       "karissa"
     );
   } else if (query.toLowerCase().includes("largest")) {
-    
-    const split = query.split(':');
+    const new_string = query.replace('?', '');
+    const split = new_string.split(':');
     const nums = split[1];
     var num_array = nums.split(',');
     const new_num_array = num_array.map(toNumber);
     return String(Math.max.apply(null, new_num_array))
-  }
+  } else if (query.toLowerCase().includes("square") && 
+             query.toLowerCase().includes("cube")) {
+    const new_string = query.replace('?', '');
+    const split = new_string.split(':');
+    const nums = split[1];
+    var num_array = nums.split(',');
+    const new_num_array = num_array.map(toNumber);
+    for (var num in new_num_array) {
+      const new_num = Number(num);
+      if (Number.isInteger(Math.sqrt(new_num)) && 
+          Number.isInteger(new_num**(1/3))) {
+          return String(new_num);
+      }
+    }
+  } 
   return "";
 }
