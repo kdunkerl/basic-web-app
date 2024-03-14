@@ -42,6 +42,12 @@ export default function QueryProcessor(query: string): string {
     const first = Number(split[2]);
     const second = Number(split[1]);
     return String(first*second);
+  } else if (query.toLowerCase().includes("plus")) {
+    const new_string = query.replace('?', '');
+    const split = new_string.split('plus');
+    const first = Number(split[2]);
+    const second = Number(split[1]);
+    return String(first+second);
   }
   return "";
 }
