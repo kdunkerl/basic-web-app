@@ -48,6 +48,28 @@ export default function QueryProcessor(query: string): string {
     const first = Number(split[2]);
     const second = Number(split[1]);
     return String(first+second);
+  } else if (query.toLowerCase().includes("primes")) {
+    const new_string = query.replace('?', '');
+    const split = new_string.split(':');
+    const nums = split[1];
+    var num_array = nums.split(',');
+    const new_num_array = num_array.map(toNumber);
+    var primes: Number[] = [];
+    const isPrime = (num: number) => {
+    for(let i = 2, s = Math.sqrt(num); i <= s; i++) {
+        if(num % i === 0) return false;
+      }
+      return num > 1;
+    }
+    for (var n in new_num_array) {
+      if (isPrime(Number(n))) {
+        primes.push(Number(n));
+      }
+      
+    }
+      
+    
+    return primes.toString();
   }
   return "";
 }
