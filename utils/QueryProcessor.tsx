@@ -74,6 +74,12 @@ export default function QueryProcessor(query: string): string {
     const first = Number(split[2]);
     const second = Number(split[1]);
     return String(first-second);
+  } else if (query.toLowerCase().includes("power")) {
+    const new_string = query.replace('?', '');
+    const split = new_string.split('to the power of');
+    const first = Number(split[2]);
+    const second = Number(split[0]);
+    return String(first**second);
   }
   return "";
 }
