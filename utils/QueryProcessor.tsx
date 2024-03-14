@@ -67,9 +67,13 @@ export default function QueryProcessor(query: string): string {
       }
       
     }
-      
-    
     return primes.toString();
+  } else if (query.toLowerCase().includes("minus")) {
+    const new_string = query.replace('?', '');
+    const split = new_string.split('minus');
+    const first = Number(split[2]);
+    const second = Number(split[1]);
+    return String(first-second);
   }
   return "";
 }
