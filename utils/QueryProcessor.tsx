@@ -36,6 +36,12 @@ export default function QueryProcessor(query: string): string {
           return String(new_num);
       }
     }
-  } 
+  } else if (query.toLowerCase().includes("muliplied")) {
+    const new_string = query.replace('?', '');
+    const split = new_string.split('multipled');
+    const first = Number(split[2]);
+    const second = Number(split[1]);
+    return String(first*second);
+  }
   return "";
 }
