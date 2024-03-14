@@ -44,10 +44,13 @@ export default function QueryProcessor(query: string): string {
     return String(first*second);
   } else if (query.toLowerCase().includes("plus")) {
     const new_string = query.replace('?', '');
+    const new_new_string = query.replace('What is ', '');
     const split = new_string.split('plus');
-    const first = Number(split[2]);
-    const second = Number(split[1]);
-    return String(first+second);
+    var ans = 0;
+    for (var str in split) {
+      ans = ans + Number(str);
+    }
+    return String(ans);
   } else if (query.toLowerCase().includes("primes")) {
     const new_string = query.replace('?', '');
     const split = new_string.split(':');
