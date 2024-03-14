@@ -1,3 +1,7 @@
+function toNumber(value: string) {
+  return Number(value);
+}
+
 export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("shakespeare")) {
     return (
@@ -11,7 +15,13 @@ export default function QueryProcessor(query: string): string {
     return (
       "karissa"
     );
+  } else if (query.toLowerCase().includes("largest")) {
+    
+    const split = query.split(':');
+    const nums = split[1];
+    var num_array = nums.split(',');
+    const new_num_array = num_array.map(toNumber);
+    return String(Math.max.apply(null, new_num_array))
   }
-
   return "";
 }
